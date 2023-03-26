@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main(){
+    ll n,m,k;cin>>n>>m>>k;
+    ll a[n],b[m];for(ll i=0;i<n;i++)cin>>a[i];for(ll i=0;i<m;i++)cin>>b[i];
+    ll c[n+m];
+    ll id=0;
+    ll j=0,i=0;
+    while(i<n && j<m){
+        if(a[i]<b[j])c[id++]=a[i++];
+        else c[id++]=b[j++];
+    }
+    while(i<n)c[id++]=a[i++];
+    while(j<m)c[id++]=b[j++];
+    cout<<c[k-1];
+}
