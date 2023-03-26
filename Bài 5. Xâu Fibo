@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll a[100];
+void sang(){
+    a[1] = 1;
+    a[2] = 1;
+    for(int i =  3 ; i<= 93 ; i++)a[i] = a[i -1] + a[i-2];
+}
+char back(ll n , ll k){
+    if(n==1)return 'A';
+    else if( n == 2)return 'B';
+    if(k<= a[n-2])return back(n-2,k);
+    return back(n-1, k - a[n-2]);
+}
+void solve(){
+    sang();
+    ll n ,k;
+    cin >> n>> k;
+    cout<<back(n,k)<<endl;
+}
+int main(){
+    int t=1;
+//    cin >>t;
+    while(t--)solve();
+}
