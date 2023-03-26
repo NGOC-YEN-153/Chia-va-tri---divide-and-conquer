@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll merge( ll a[] , ll l ,ll m, ll r){
+    vector<ll>v1(a+l,a+m+1);
+    vector<ll>v2(a+m+1,a+r+1);
+    ll i = 0,j = 0 , cnt = 0 ;
+    while(i<v1.size() && j<v2.size()){
+        if(v1[i]>v2[j]){
+            a[l++]=v2[j++];
+            cnt+=v1.size()-i;
+        }
+        else a[l++]=v1[i++];
+    }
+    while(i<v1.size())a[l++]=v1[i++];
+    while(j<v2.size())a[l++]=v2[j++];
+    return cnt;
+}
+ll mergesort(ll a[],ll l, ll r){
+    ll cnt=0;
+    ll m=(l+r)/2;
+    if(l<r){
+        cnt+=mergesort(a, l, m)+mergesort(a , m + 1 , r ) +  merge(a,l,m,r);
+    }
+    return cnt;
+}
+int main(){
+    ll n;cin>>n;
+    ll a[n];
+    for(ll i=0;i<n;i++)cin>>a[i];
+    cout<<mergesort(a,0,n-1);
+}
