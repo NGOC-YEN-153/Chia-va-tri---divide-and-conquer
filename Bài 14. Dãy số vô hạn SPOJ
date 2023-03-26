@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll mod=1e9+7;
+struct matrix{
+    ll a[2][2];
+    matrix operator * (matrix b){
+        matrix res;
+        for(ll i=0 ;i<2;i++){
+            for(ll j=0;j<2;j++){
+                res.a[i][j]=0;
+                for(ll k=0 ;k<2;k++){
+                    res.a[i][j]+=a[i][k] * b.a[k][j];
+                    res.a[i][j]%=mod;
+                }
+            }
+        }
+        return res;
+    }
+};
+matrix powmod(matrix a, ll b){
+    if(b==1) return a;
+    matrix res=powmod(a,b/2);
+    if(b%2==0)return res*res;
+    else return res*res*a;
+}
+int main(){
+    ll n;cin>>n;
+     matrix F;
+    F.a[0][0]=1;F.a[0][1]=1;F.a[1][0]=1;F.a[1][1]=0;
+    matrix x=powmod(F,n);
+    cout<<x.a[0][1];
+}
