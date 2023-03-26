@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main(){
+    ll n;cin>>n;
+    map<ll,ll>mp;
+    ll m=n+n-1;
+    while(m--){
+        ll x;cin>>x;
+        mp[x]++;
+    }
+    for(auto x:mp){
+        if(x.second%2==1){
+            cout<<x.first;
+            return 0;
+        }
+    }
+}
