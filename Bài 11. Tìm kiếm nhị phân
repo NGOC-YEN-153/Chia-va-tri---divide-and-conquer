@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll find(ll a[], ll l , ll r, ll x){
+    ll res=-1;
+    while(l<=r){
+        ll m=(l+r)/2;
+        if(a[m]==x){
+            res=m;
+            break;
+        }
+        else if(a[m]>x)r=m-1;
+        else l=m+1;
+    }
+    return res;
+}
+int main(){
+    ll n;cin>>n;ll k;cin>>k;
+    ll a[n];
+    for(ll i=0;i<n;i++)cin>>a[i];
+    sort(a,a+n);
+    ll it=find(a,0,n-1,k);
+    if(it!=-1)cout<<"YES";
+    else cout<<"NO";
+}
