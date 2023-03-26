@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll back(ll n , ll k){
+    if(n==1)return 1;
+    ll x = (ll)pow(2,n);
+    if( k == x/2)return n;
+    else if( k < x/2)return back(n-1 , k);
+    return back(n-1, k - x/2);
+}
+int main(){
+    ll n ,k;
+    cin >> n>> k;
+    cout<<back(n,k);
+}
