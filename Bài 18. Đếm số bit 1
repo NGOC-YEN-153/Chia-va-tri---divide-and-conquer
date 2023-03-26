@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll l , r, n;
+ll bac(ll n){
+    ll res = 1;
+    ll cnt = 0;
+    while(1){
+        res*=2;
+        if(res > n)break;
+        cnt++;
+    }
+    return cnt;
+}
+ll back(ll n , ll k){
+    ll x = bac(n);
+    ll y = (ll)pow(2,x);
+    if( k == y)return n%2;
+    else if( k > y) return back(n/2 , k - y);
+    return back(n/2 , k);
+}
+
+void solve (){
+    cin >> n>> l >>r;
+    ll cnt  = 0;
+    for(ll i =l ; i<= r ; i++){
+        cnt+=back(n,i);
+    }
+    cout<<cnt<<endl;
+}
+int main(){
+    int t = 1;
+    cin >> t;
+    while(t--){
+        solve();
+    }
+    
+}
